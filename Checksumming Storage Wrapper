@@ -1,0 +1,21 @@
+# Checksumming Storage Wrapper
+
+
+```python
+class ChecksummingStorageWrapper:
+    def __init__(self, storage):
+        self.storage = storage  
+        self.checksum = 0  
+
+    def write(self, buffer):
+        self.checksum += sum(buffer)
+        self.storage.write(buffer)
+
+    def get_checksum(self):
+        return self.checksum
+
+def process_payments():
+    storage = get_payments_storage() 
+    checksumming_storage = ChecksummingStorageWrapper(storage) 
+    stream_payments_to_storage(checksumming_storage)  
+    print(checksumming_storage.get_checksum())
