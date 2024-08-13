@@ -1,0 +1,25 @@
+# Rss 
+
+## Function Description
+
+### `get_headlines(rss_url)`
+
+This function takes an RSS feed URL as input and returns a list of headlines extracted from the feed.
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+def get_headlines(rss_url):
+    headlines = []
+
+    response = requests.get(rss_url)
+    soup = BeautifulSoup(response.content, 'xml')
+
+    for i in soup.find_all('item'):
+        title = i.find('title').text
+        headlines.append(title)
+    return headlines
+
+google_news_url = "https://news.google.com/news/rss"
+print(get_headlines(google_news_url))
