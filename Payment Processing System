@@ -1,0 +1,25 @@
+# Payment Processing System
+
+This repository demonstrates how to generate, store, and handle payment data.
+
+```python
+
+def payment_generator():
+    payments = list()
+   
+def callback_fn(amount):
+    payments.append(amount)
+   
+    stream_payments(callback_fn)
+   
+    while payments:
+        yield payments.pop(0)
+
+def process_payments_2():
+    payments_gen = payment_generator()
+
+    store_payments(payments_gen)
+
+
+process_payments_2()
+
