@@ -1,3 +1,13 @@
+import redis
+
+# Create a Redis connection
+redis_client = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+def get_from_redis_cache(key):
+    return redis_client.get(key)
+
+def set_redis_cache(key, value):
+    redis_client.set(key, value)
 
 # Recommendation Service
 
